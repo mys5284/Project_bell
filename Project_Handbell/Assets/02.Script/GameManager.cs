@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject note6;
     public GameObject note7;
     public GameObject note8;
-
+    //BARK RIM OF NOTE
     private void Awake()
     {
         json = GetComponent<JsonData>();
