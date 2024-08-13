@@ -35,7 +35,7 @@ public class Notes3
 [Serializable]
 public class Data3
 {
-    Notes3[] notes3;
+    public Notes3[] notes3;
 }
 
 public class JsonData : MonoBehaviour
@@ -47,7 +47,7 @@ public class JsonData : MonoBehaviour
     void Awake()
     {
         LoadJson();
-    
+
 
     }
 
