@@ -2,12 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class note : MonoBehaviour
+public class Note : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum Score
     {
-        
+        Miss,
+        Nice,
+        Good,
+        Perfect
+    }
+
+    public Score score;
+
+
+    private void Start()
+    {
+        score = Score.Miss;
     }
 
     // Update is called once per frame
@@ -16,4 +26,13 @@ public class note : MonoBehaviour
         Vector3 move = new Vector3(0, -7, 0);
         this.transform.position += move * Time.deltaTime;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("VERDICT"))
+        {
+
+        }
+    }
+
 }

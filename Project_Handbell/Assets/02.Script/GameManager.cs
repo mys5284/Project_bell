@@ -5,7 +5,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+   public static GameManager gameManager = null;
+
+    public float spawn_Speed = 0.1f;
+    public float wait_time = 1f;
+
     JsonData json;
+    public UIManager uiManager;
 
     public GameObject note1;
     public GameObject note2;
@@ -25,11 +31,25 @@ public class GameManager : MonoBehaviour
     public GameObject verdit7;
     public GameObject verdit8;
 
-    public float spawn_Speed = 0.1f;
-    //BARK RIM OF NOTE
+
+
     private void Awake()
     {
+        if (this != gameManager)
+        {
+            gameManager = this;
+        }
+        else if (gameManager != this) //새로 들어온 매니저 날림
+        {
+            Destroy(this.gameObject);
+        }
+
+        //씬 변경 되도 게임 오브젝트 파괴X
+        //게임이 종료될 때 까지 쭉 유지
+        DontDestroyOnLoad(this.gameObject);
+
         json = GetComponent<JsonData>();
+
 
     }
     void Start()
@@ -40,6 +60,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+
+        //키입력 시 노트칸 활성
         if (Input.GetKey(KeyCode.A))
         {
             verdit1.SetActive(true);
@@ -107,7 +129,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public IEnumerator SongStart()
+    public IEnumerator SongStart() //챕터 1 (song1, song2, song3) 루틴 시작
     {
         for (int i = 0; i < json.data1.notes1.Length; i++)
         {
@@ -146,7 +168,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(spawn_Speed);
         }
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(wait_time);
 
         for (int i = 0; i < json.data2.notes2.Length; i++)
         {
@@ -187,7 +209,7 @@ public class GameManager : MonoBehaviour
 
         }
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(wait_time);
 
         for (int i = 0; i < json.data3.notes3.Length; i++)
         {
@@ -228,6 +250,12 @@ public class GameManager : MonoBehaviour
 
         }
 
+        yield return new WaitForSeconds(wait_time);
+
+        uiManager.Result_UI.SetActive(true);
+
         yield break;
     }
+
+
 }

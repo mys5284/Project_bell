@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NOTE
   - Line
+  - VERDICT
   layers:
   - Default
   - TransparentFX
