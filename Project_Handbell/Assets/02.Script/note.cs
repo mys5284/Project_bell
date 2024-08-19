@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Note : MonoBehaviour
 {
@@ -25,14 +26,8 @@ public class Note : MonoBehaviour
     {
         Vector3 move = new Vector3(0, -7, 0);
         this.transform.position += move * Time.deltaTime;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("VERDICT"))
-        {
-
-        }
+        transform.Rotate(0f, 180f * Time.deltaTime, 0f);
+        //if(trans
     }
 
 }

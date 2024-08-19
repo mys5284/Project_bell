@@ -10,45 +10,48 @@ public class Collinder : MonoBehaviour
     float Verdict = 0;
     float dist = 0;
 
+    ScoreManager scoreManager;
+
+
     private void Start()
     {
         tr = GetComponent<Transform>();
+        scoreManager = GetComponent<ScoreManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("NOTE"))
         {
-            print(this.tr.position.y);
-            print(other.transform.position.y);
             dist = this.tr.position.y - other.transform.position.y;
-          print(dist);
 
-            if (dist >= 1)
+            if (dist >= 1 || dist <= -1)
             {
-              //  note.score = Note.Score.Miss;
                 print("미스");
+                other.gameObject.tag = "NOTNOTE";
             }
-            else if ((dist < 1 && dist >= 0.5f) || (dist > -1 && dist <= -0.5f))
+            else if ((dist < 1 && dist >= 0.5f) || (dist > -1 && dist <= -0.5f)) //NICE의 거리값
             {
-               // note.score = Note.Score.Nice;
                 print("나이스");
+                
+                Destroy(other.gameObject);
             }
-            else if ((dist < 0.5f && dist >= 0.2f) || (dist > -0.5f && dist <= -0.2f))
+            else if ((dist < 0.5f && dist >= 0.2f) || (dist > -0.5f && dist <= -0.2f)) //GOOD의 거리값
             {
-              //  note.score = Note.Score.Good;
                 print("굿");
+                Destroy(other.gameObject);
             }
-            else if ((dist < 0.2f && dist >= 0f) || (dist > -0.2f && dist <= -0f))
+            else if ((dist < 0.2f && dist >= 0f) || (dist > -0.2f && dist <= -0f)) //PERFECT의 거리값
             {
-              //  note.score = Note.Score.Perfect;
                 print("퍼펙트");
+                Destroy(other.gameObject);
             }
 
-            Destroy(other.gameObject);
+
 
         }
     }
+
 
 
 }
