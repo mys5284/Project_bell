@@ -15,10 +15,18 @@ public class UIManager : MonoBehaviour
 
     Color_note enum_Color_note;
 
+    GameManager gameManager;
+    ScoreManager scoreManager;
+
     //음표버튼 오브젝트
     public GameObject Color_note_button1;
     public GameObject Color_note_button2;
     public GameObject Color_note_button3;
+
+    //완성도 텍스트
+    public Text Comple_song1;
+    public Text Comple_song2;
+    public Text Comple_song3;
 
     Color Alpha_color;
 
@@ -29,14 +37,13 @@ public class UIManager : MonoBehaviour
 
     public GameObject Result_UI; //결과창 UI
 
-    private void Awake()
+    private void Start()
     {
-      
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
     }
-    private void Update()
-    {
-        
-    }
+
     public void Get_Color_note_1() //음표버튼1 눌렀을때
     {
         enum_Color_note = Color_note.Color_note_1;
@@ -93,6 +100,42 @@ public class UIManager : MonoBehaviour
         yield break;
     }
 
- 
+    public void Color_note_Spawn() //노래가 끝났을 때 음표 버튼이 생성되는 조건식
+    {
+        Result_UI.SetActive(true); //결과창UI 활성
+
+        //완성도 표시
+        Comple_song1.text = (int)scoreManager.song1_total_score + "%".ToString();
+        Comple_song2.text = (int)scoreManager.song2_total_score + "%".ToString();
+        Comple_song3.text = (int)scoreManager.song3_total_score + "%".ToString();
+
+        if (scoreManager.song1_total_score >= 50) //곡1 완성도가 50% 이상일 때
+        {
+            Color_note_button1.SetActive(true);
+        }
+        else
+        {
+            Color_note_button1.SetActive(false);
+        }
+
+        if (scoreManager.song2_total_score >= 50) //곡2 완성도가 50% 이상일 때
+        {
+            Color_note_button2.SetActive(true);
+        }
+        else
+        {
+            Color_note_button2.SetActive(false);
+        }
+
+        if (scoreManager.song3_total_score >= 50) //곡3 완성도가 50% 이상일 때
+        {
+            Color_note_button3.SetActive(true);
+        }
+        else
+        {
+            Color_note_button3.SetActive(false);
+        }
+
+    }
 
 }

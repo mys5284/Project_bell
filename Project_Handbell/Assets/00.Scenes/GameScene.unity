@@ -945,6 +945,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e18074aa265444c8c31cf6d22f7144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  song1_score: 0
+  song1_curr_score: 168
+  song1_total_score: 0
+  song2_score: 0
+  song2_curr_score: 192
+  song2_total_score: 0
+  song3_score: 0
+  song3_curr_score: 651
+  song3_total_score: 0
 --- !u!1 &731559488
 GameObject:
   m_ObjectHideFlags: 0
@@ -1757,7 +1766,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawn_Speed: 0.5
   wait_time: 4
-  uiManager: {fileID: 1097774449}
   note1: {fileID: 3402456961272242377, guid: 14011c7b9b961dc4aa0790c29c0aad37, type: 3}
   note2: {fileID: 1571526259668556631, guid: 0059b7757c0966b4997a7a4b1b560fa0, type: 3}
   note3: {fileID: 5671658143388259949, guid: 2c9a035e3e032dc44be0a61338856668, type: 3}
@@ -1774,6 +1782,7 @@ MonoBehaviour:
   verdit6: {fileID: 1502221248}
   verdit7: {fileID: 1216701210}
   verdit8: {fileID: 1776742486}
+  chapter1: 0
 --- !u!1 &1063494813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2117,6 +2126,9 @@ MonoBehaviour:
   Color_note_button1: {fileID: 844502516}
   Color_note_button2: {fileID: 1398420962}
   Color_note_button3: {fileID: 1560943418}
+  Comple_song1: {fileID: 1192538061}
+  Comple_song2: {fileID: 731559490}
+  Comple_song3: {fileID: 1491343835}
   Color_note1: {fileID: 2083708928}
   Color_note2: {fileID: 1435054810}
   Color_note3: {fileID: 1347528671}
