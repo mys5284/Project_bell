@@ -11,6 +11,16 @@ public class Collinder : MonoBehaviour
 
     GameManager gameManager;
     ScoreManager scoreManager;
+    UIManager uiManager;
+
+    //판정 시 이펙트 효과
+    public ParticleSystem perfect_ef;
+    public ParticleSystem cool_ef;
+    public ParticleSystem good_ef;
+
+    GameObject Verdict_Img = null;
+
+    [SerializeField] List<GameObject> jImgList = new List<GameObject>();
 
 
     private void Start()
@@ -18,6 +28,7 @@ public class Collinder : MonoBehaviour
         tr = GetComponent<Transform>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
 
@@ -29,32 +40,32 @@ public class Collinder : MonoBehaviour
 
             if (dist >= 1 || dist <= -1)
             {
-                print("미스");
+                StartCoroutine(DispJud(jImgList[0]));
                 other.gameObject.tag = "NOTNOTE";
             }
             else if ((dist < 1 && dist >= 0.5f) || (dist > -1 && dist <= -0.5f)) //GOOD의 거리값
             {
-                print("굿");
+
                 //챕터1 곡 별로 +1점
-                if (gameManager.chapter1 == GameManager.Chapter1.song1) 
+                if (gameManager.chapter1 == GameManager.Chapter1.song1)
                 {
                     scoreManager.song1_score++;
                 }
-                else if (gameManager.chapter1 == GameManager.Chapter1.song2)  
+                else if (gameManager.chapter1 == GameManager.Chapter1.song2)
                 {
                     scoreManager.song2_score++;
                 }
-                else if (gameManager.chapter1 == GameManager.Chapter1.song3)  
+                else if (gameManager.chapter1 == GameManager.Chapter1.song3)
                 {
                     scoreManager.song3_score++;
                 }
-
-
+                Instantiate(good_ef, this.transform);
+                StartCoroutine(DispJud(jImgList[1]));
                 Destroy(other.gameObject);
             }
             else if ((dist < 0.5f && dist >= 0.2f) || (dist > -0.5f && dist <= -0.2f)) //COOL의 거리값
             {
-                print("쿨");
+
                 //챕터1 곡 별로 +2점
                 if (gameManager.chapter1 == GameManager.Chapter1.song1)
                 {
@@ -68,12 +79,13 @@ public class Collinder : MonoBehaviour
                 {
                     scoreManager.song3_score += 2;
                 }
-
+                Instantiate(cool_ef, this.transform);
+                StartCoroutine(DispJud(jImgList[2]));
                 Destroy(other.gameObject);
             }
             else if ((dist < 0.2f && dist >= 0f) || (dist > -0.2f && dist <= -0f)) //PERFECT의 거리값
             {
-                print("퍼펙트");
+
                 //챕터1 곡 별로 +3점
                 if (gameManager.chapter1 == GameManager.Chapter1.song1)
                 {
@@ -87,7 +99,8 @@ public class Collinder : MonoBehaviour
                 {
                     scoreManager.song3_score += 3;
                 }
-
+                Instantiate(perfect_ef, this.transform);
+                StartCoroutine(DispJud(jImgList[3]));
                 Destroy(other.gameObject);
             }
 
@@ -96,6 +109,23 @@ public class Collinder : MonoBehaviour
         }
     }
 
+    private void Off_Verdict() //VERDICT_IMG 테그가 들어간거 모두 비활성
+    {
+        GameObject[] off = GameObject.FindGameObjectsWithTag("VERDICT_IMG");
 
+        foreach (GameObject o in off) { o.SetActive(false); }
+    }
 
+    private IEnumerator DispJud(GameObject _go) //해당된 판정 이미지만 활성
+    {
+        Off_Verdict();
+
+        Verdict_Img = _go;
+        Verdict_Img.gameObject.SetActive(false);
+
+        Verdict_Img.gameObject.SetActive(true);
+
+        yield return null;
+
+    }
 }

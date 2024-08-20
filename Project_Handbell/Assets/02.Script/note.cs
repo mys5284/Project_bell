@@ -15,4 +15,9 @@ public class Note : MonoBehaviour
         transform.Rotate(0f, 180f * Time.deltaTime, 0f);
     }
 
+    private void OnDestroy()
+    {
+        
+    }
+
 }

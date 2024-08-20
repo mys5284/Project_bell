@@ -14,25 +14,15 @@ public class GameManager : MonoBehaviour
     JsonData json;
     UIManager uiManager;
     ScoreManager scoreManager;
+    AudioSource audioSource;
 
-    public GameObject note1;
-    public GameObject note2;
-    public GameObject note3;
-    public GameObject note4;
-    public GameObject note5;
-    public GameObject note6;
-    public GameObject note7;
-    public GameObject note8;
+    public List<GameObject> note_List = new List<GameObject>();
 
-    public GameObject verdit1;
-    public GameObject verdit2;
-    public GameObject verdit3;
-    public GameObject verdit4;
-    public GameObject verdit5;
-    public GameObject verdit6;
-    public GameObject verdit7;
-    public GameObject verdit8;
+    public List<GameObject> verdit_List = new List<GameObject>();
 
+    public List<GameObject> track_List = new List<GameObject>();
+
+    public List<AudioClip> effect_sound_List = new List<AudioClip>();
 
     public enum Chapter1
     {
@@ -44,24 +34,25 @@ public class GameManager : MonoBehaviour
     public Chapter1 chapter1 = Chapter1.song1;
     private void Awake()
     {
-        gameManager = GetComponent<GameManager>();
+        //gameManager = GetComponent<GameManager>();
 
-        //if (this != gameManager)
+        //if (this != gamemanager)
         //{
-        //    gameManager = this;
+        //    gamemanager = this;
         //}
-        //else if (gameManager != this) //새로 들어온 매니저 날림
+        //else if (gamemanager != this) //새로 들어온 매니저 날림
         //{
-        //    Destroy(this.gameObject);
+        //    destroy(this.gameobject);
         //}
 
-        ////씬 변경 되도 게임 오브젝트 파괴X
+        ////씬 변경 되도 게임 오브젝트 파괴x
         ////게임이 종료될 때 까지 쭉 유지
-        //DontDestroyOnLoad(this.gameObject);
+        //dontdestroyonload(this.gameobject);
 
         json = GetComponent<JsonData>();
         uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        audioSource = GetComponent<AudioSource>();
         chapter1 = Chapter1.song1;
 
 
@@ -76,74 +67,99 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-
         //키입력 시 노트칸 collider 활성
         if (Input.GetKey(KeyCode.A))
         {
-            verdit1.gameObject.GetComponent<BoxCollider>().enabled = true;
+            verdit_List[0].gameObject.GetComponent<BoxCollider>().enabled = true;
+            track_List[0].SetActive(true);
+            audioSource.PlayOneShot(effect_sound_List[0]);
         }
         else
         {
-            verdit1.gameObject.GetComponent<BoxCollider>().enabled = false;
+            verdit_List[0].gameObject.GetComponent<BoxCollider>().enabled = false;
+            track_List[0].SetActive(false);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            verdit2.gameObject.GetComponent<BoxCollider>().enabled = true;
+            verdit_List[1].gameObject.GetComponent<BoxCollider>().enabled = true;
+            track_List[1].SetActive(true);
+            audioSource.PlayOneShot(effect_sound_List[1]);
         }
         else
         {
-            verdit2.gameObject.GetComponent<BoxCollider>().enabled = false;
+            verdit_List[1].gameObject.GetComponent<BoxCollider>().enabled = false;
+            track_List[1].SetActive(false);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            verdit3.gameObject.GetComponent<BoxCollider>().enabled = true;
+            verdit_List[2].gameObject.GetComponent<BoxCollider>().enabled = true;
+            track_List[2].SetActive(true);
+            audioSource.PlayOneShot(effect_sound_List[2]);
         }
         else
         {
-            verdit3.gameObject.GetComponent<BoxCollider>().enabled = false;
+            verdit_List[2].gameObject.GetComponent<BoxCollider>().enabled = false;
+            track_List[2].SetActive(false);
         }
         if (Input.GetKey(KeyCode.F))
         {
-            verdit4.gameObject.GetComponent<BoxCollider>().enabled = true;
+            verdit_List[3].gameObject.GetComponent<BoxCollider>().enabled = true;
+            track_List[3].SetActive(true);
+            audioSource.PlayOneShot(effect_sound_List[3]);
         }
         else
         {
-            verdit4.gameObject.GetComponent<BoxCollider>().enabled = false;
-        }
-        if (Input.GetKey(KeyCode.H))
-        {
-            verdit5.gameObject.GetComponent<BoxCollider>().enabled = true;
-        }
-        else
-        {
-            verdit5.gameObject.GetComponent<BoxCollider>().enabled = false;
+            verdit_List[3].gameObject.GetComponent<BoxCollider>().enabled = false;
+            track_List[3].SetActive(false);
         }
         if (Input.GetKey(KeyCode.J))
         {
-            verdit6.gameObject.GetComponent<BoxCollider>().enabled = true;
+            verdit_List[4].gameObject.GetComponent<BoxCollider>().enabled = true;
+            track_List[4].SetActive(true);
+            audioSource.PlayOneShot(effect_sound_List[4]);
         }
         else
         {
-            verdit6.gameObject.GetComponent<BoxCollider>().enabled = false;
+            verdit_List[4].gameObject.GetComponent<BoxCollider>().enabled = false;
+            track_List[4].SetActive(false);
         }
         if (Input.GetKey(KeyCode.K))
         {
-            verdit7.gameObject.GetComponent<BoxCollider>().enabled = true;
+            verdit_List[5].gameObject.GetComponent<BoxCollider>().enabled = true;
+            track_List[5].SetActive(true);
+            audioSource.PlayOneShot(effect_sound_List[5]);
         }
         else
         {
-            verdit7.gameObject.GetComponent<BoxCollider>().enabled = false;
+            verdit_List[5].gameObject.GetComponent<BoxCollider>().enabled = false;
+            track_List[5].SetActive(false);
         }
         if (Input.GetKey(KeyCode.L))
         {
-            verdit8.gameObject.GetComponent<BoxCollider>().enabled = true;
+            verdit_List[6].gameObject.GetComponent<BoxCollider>().enabled = true;
+            track_List[6].SetActive(true);
+            audioSource.PlayOneShot(effect_sound_List[6]);
         }
         else
         {
-            verdit8.gameObject.GetComponent<BoxCollider>().enabled = false;
+            verdit_List[6].gameObject.GetComponent<BoxCollider>().enabled = false;
+            track_List[6].SetActive(false);
+        }
+        if (Input.GetKey(KeyCode.Semicolon))
+        {
+            verdit_List[7].gameObject.GetComponent<BoxCollider>().enabled = true;
+            track_List[7].SetActive(true);
+            audioSource.PlayOneShot(effect_sound_List[7]);
+        }
+        else
+        {
+            verdit_List[7].gameObject.GetComponent<BoxCollider>().enabled = false;
+            track_List[7].SetActive(false);
         }
     }
+
+
 
     public IEnumerator SongStart() //챕터 1 (song1, song2, song3) 루틴 시작
     {
@@ -156,35 +172,35 @@ public class GameManager : MonoBehaviour
                     {
                         if (json.data1.notes1[i].C1 == 1)
                         {
-                            Instantiate(note1, new Vector3(-7, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data1.notes1[i].D == 1)
                         {
-                            Instantiate(note2, new Vector3(-5, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[1], new Vector3(-5, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data1.notes1[i].E == 1)
                         {
-                            Instantiate(note3, new Vector3(-3, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[2], new Vector3(-3, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data1.notes1[i].F == 1)
                         {
-                            Instantiate(note4, new Vector3(-1, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[3], new Vector3(-1, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data1.notes1[i].G == 1)
                         {
-                            Instantiate(note5, new Vector3(1, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[4], new Vector3(1, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data1.notes1[i].A == 1)
                         {
-                            Instantiate(note6, new Vector3(3, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[5], new Vector3(3, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data1.notes1[i].B == 1)
                         {
-                            Instantiate(note7, new Vector3(5, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[6], new Vector3(5, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data1.notes1[i].C2 == 1)
                         {
-                            Instantiate(note8, new Vector3(7, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[7], new Vector3(7, 5.5f, 0), Quaternion.identity);
                         }
                         yield return new WaitForSeconds(spawn_Speed);
                     }
@@ -198,35 +214,35 @@ public class GameManager : MonoBehaviour
                     {
                         if (json.data2.notes2[i].C1 == 1)
                         {
-                            Instantiate(note1, new Vector3(-7, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data2.notes2[i].D == 1)
                         {
-                            Instantiate(note2, new Vector3(-5, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[1], new Vector3(-5, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data2.notes2[i].E == 1)
                         {
-                            Instantiate(note3, new Vector3(-3, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[2], new Vector3(-3, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data2.notes2[i].F == 1)
                         {
-                            Instantiate(note4, new Vector3(-1, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[3], new Vector3(-1, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data2.notes2[i].G == 1)
                         {
-                            Instantiate(note5, new Vector3(1, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[4], new Vector3(1, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data2.notes2[i].A == 1)
                         {
-                            Instantiate(note6, new Vector3(3, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[5], new Vector3(3, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data2.notes2[i].B == 1)
                         {
-                            Instantiate(note7, new Vector3(5, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[6], new Vector3(5, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data2.notes2[i].C2 == 1)
                         {
-                            Instantiate(note8, new Vector3(7, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[7], new Vector3(7, 5.5f, 0), Quaternion.identity);
                         }
 
                         yield return new WaitForSeconds(spawn_Speed);
@@ -242,35 +258,35 @@ public class GameManager : MonoBehaviour
                     {
                         if (json.data3.notes3[i].C1 == 1)
                         {
-                            Instantiate(note1, new Vector3(-7, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data3.notes3[i].D == 1)
                         {
-                            Instantiate(note2, new Vector3(-5, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[1], new Vector3(-5, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data3.notes3[i].E == 1)
                         {
-                            Instantiate(note3, new Vector3(-3, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[2], new Vector3(-3, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data3.notes3[i].F == 1)
                         {
-                            Instantiate(note4, new Vector3(-1, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[3], new Vector3(-1, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data3.notes3[i].G == 1)
                         {
-                            Instantiate(note5, new Vector3(1, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[4], new Vector3(1, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data3.notes3[i].A == 1)
                         {
-                            Instantiate(note6, new Vector3(3, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[5], new Vector3(3, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data3.notes3[i].B == 1)
                         {
-                            Instantiate(note7, new Vector3(5, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[6], new Vector3(5, 5.5f, 0), Quaternion.identity);
                         }
                         if (json.data3.notes3[i].C2 == 1)
                         {
-                            Instantiate(note8, new Vector3(7, 5.5f, 0), Quaternion.identity);
+                            Instantiate(note_List[7], new Vector3(7, 5.5f, 0), Quaternion.identity);
                         }
 
                         yield return new WaitForSeconds(0.25f);

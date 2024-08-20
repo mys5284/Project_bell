@@ -18,11 +18,6 @@ public class UIManager : MonoBehaviour
     GameManager gameManager;
     ScoreManager scoreManager;
 
-    public Image Img_Perfect;
-    public Image Img_Cool;
-    public Image Img_Good;
-    public Image Img_Miss;
-
     //음표버튼 오브젝트
     public GameObject Color_note_button1;
     public GameObject Color_note_button2;
@@ -49,6 +44,7 @@ public class UIManager : MonoBehaviour
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
   
     }
+
 
     public void Get_Color_note_1() //음표버튼1 눌렀을때
     {
