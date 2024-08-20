@@ -32,18 +32,19 @@ public class Collinder : MonoBehaviour
                 print("¹Ì½º");
                 other.gameObject.tag = "NOTNOTE";
             }
-            else if ((dist < 1 && dist >= 0.5f) || (dist > -1 && dist <= -0.5f)) //NICEÀÇ °Å¸®°ª
+            else if ((dist < 1 && dist >= 0.5f) || (dist > -1 && dist <= -0.5f)) //GOODÀÇ °Å¸®°ª
             {
-                print("³ªÀÌ½º");
-                if (gameManager.chapter1 == GameManager.Chapter1.song1)
+                print("±Â");
+                //Ã©ÅÍ1 °î º°·Î +1Á¡
+                if (gameManager.chapter1 == GameManager.Chapter1.song1) 
                 {
                     scoreManager.song1_score++;
                 }
-                else if (gameManager.chapter1 == GameManager.Chapter1.song2)
+                else if (gameManager.chapter1 == GameManager.Chapter1.song2)  
                 {
                     scoreManager.song2_score++;
                 }
-                else if (gameManager.chapter1 == GameManager.Chapter1.song3)
+                else if (gameManager.chapter1 == GameManager.Chapter1.song3)  
                 {
                     scoreManager.song3_score++;
                 }
@@ -51,10 +52,10 @@ public class Collinder : MonoBehaviour
 
                 Destroy(other.gameObject);
             }
-            else if ((dist < 0.5f && dist >= 0.2f) || (dist > -0.5f && dist <= -0.2f)) //GOODÀÇ °Å¸®°ª
+            else if ((dist < 0.5f && dist >= 0.2f) || (dist > -0.5f && dist <= -0.2f)) //COOLÀÇ °Å¸®°ª
             {
-                print("±Â");
-
+                print("Äð");
+                //Ã©ÅÍ1 °î º°·Î +2Á¡
                 if (gameManager.chapter1 == GameManager.Chapter1.song1)
                 {
                     scoreManager.song1_score += 2;
@@ -73,7 +74,7 @@ public class Collinder : MonoBehaviour
             else if ((dist < 0.2f && dist >= 0f) || (dist > -0.2f && dist <= -0f)) //PERFECTÀÇ °Å¸®°ª
             {
                 print("ÆÛÆåÆ®");
-
+                //Ã©ÅÍ1 °î º°·Î +3Á¡
                 if (gameManager.chapter1 == GameManager.Chapter1.song1)
                 {
                     scoreManager.song1_score += 3;
