@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.IO;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [Serializable]
@@ -80,10 +79,7 @@ public class JsonData : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SaveJson();
-        }
+       
     }
 
 

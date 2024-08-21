@@ -20,7 +20,8 @@ public class Collinder : MonoBehaviour
 
     GameObject Verdict_Img = null;
 
-    [SerializeField] List<GameObject> jImgList = new List<GameObject>();
+    [SerializeField]
+    public List<GameObject> jImgList = new List<GameObject>();
 
 
     private void Start()
@@ -116,7 +117,7 @@ public class Collinder : MonoBehaviour
         foreach (GameObject o in off) { o.SetActive(false); }
     }
 
-    private IEnumerator DispJud(GameObject _go) //해당된 판정 이미지만 활성
+    public IEnumerator DispJud(GameObject _go) //해당된 판정 이미지만 활성
     {
         Off_Verdict();
 
