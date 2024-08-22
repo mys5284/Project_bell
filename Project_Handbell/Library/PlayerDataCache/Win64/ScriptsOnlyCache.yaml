@@ -14,8 +14,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -378,7 +380,7 @@ ScriptsOnlyBuild:
     className: ToggleGroup
   - hash:
       serializedVersion: 2
-      Hash: 37ff6eadb39f0468d429ffc068ce3d33
+      Hash: fa731fa6e7eaf888928738163a46b570
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -780,7 +782,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 3b672c36c5e96b264755bf056057dd3d
+      Hash: 00bec0f0109f3bf3fbb3399b8320d190
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AudioManager

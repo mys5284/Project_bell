@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
     AudioSource audioSource;
 
+    public AudioClip[] song_MRs;
     public AudioSource[] effect_sound_Line;
     public AudioClip[] effect_sound_Clips;
 
@@ -13,10 +15,18 @@ public class AudioManager : MonoBehaviour
     {
         //오디오매니저의 각 개체별로 각 클립을 넣어줌
         audioSource = GetComponent<AudioSource>();
+
+        this.audioSource.clip = song_MRs[0];
+
         for (int i = 0; i < effect_sound_Line.Length; i++)
         {
             effect_sound_Line[i].clip = effect_sound_Clips[i];
         }
+    }
+
+    public void Song1_Start()
+    {
+      this.audioSource.Play();
     }
 
    public void Line_1_sfx()

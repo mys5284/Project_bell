@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     public float spawn_Speed = 0.1f;
     public float wait_time = 1f;
 
+    public int bpm = 60;
+    double currcntTime = 0d;
+    int n_count = 0;
+
     JsonData json;
     UIManager uiManager;
     ScoreManager scoreManager;
@@ -57,77 +61,160 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        StartCoroutine(SongStart());
+        // StartCoroutine(SongStart());
+        audioManager.Song1_Start();
     }
 
-    public int bpm = 120;
-    double currcntTime = 0d;
+    float prevtime = 0f;
+    float t_currtime = 0f;
 
-    public IEnumerator test()
+    void Sum(float _prevtime, float _t_currtime)
     {
-        for (int i = 0; i < 200; i++)
-        {
+        print(_t_currtime - _prevtime);
+        _prevtime = _t_currtime;
+    }
 
-            Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
-            yield return new WaitForSecondsRealtime(0.5f);
+    public IEnumerator test(int _n_count)
+    {
+        switch (chapter1)
+        {
+            case Chapter1.song1:
+                if (json.data1.notes1[_n_count].C1 == 1)
+                {
+                    Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data1.notes1[_n_count].D == 1)
+                {
+                    Instantiate(note_List[1], new Vector3(-5, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data1.notes1[_n_count].E == 1)
+                {
+                    Instantiate(note_List[2], new Vector3(-3, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data1.notes1[_n_count].F == 1)
+                {
+                    Instantiate(note_List[3], new Vector3(-1, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data1.notes1[_n_count].G == 1)
+                {
+                    Instantiate(note_List[4], new Vector3(1, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data1.notes1[_n_count].A == 1)
+                {
+                    Instantiate(note_List[5], new Vector3(3, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data1.notes1[_n_count].B == 1)
+                {
+                    Instantiate(note_List[6], new Vector3(5, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data1.notes1[_n_count].C2 == 1)
+                {
+                    Instantiate(note_List[7], new Vector3(7, 5.5f, 0), Quaternion.identity);
+                }
+                break;
+            case Chapter1.song2:
+                if (json.data2.notes2[_n_count].C1 == 1)
+                {
+                    Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data2.notes2[_n_count].D == 1)
+                {
+                    Instantiate(note_List[1], new Vector3(-5, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data2.notes2[_n_count].E == 1)
+                {
+                    Instantiate(note_List[2], new Vector3(-3, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data2.notes2[_n_count].F == 1)
+                {
+                    Instantiate(note_List[3], new Vector3(-1, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data2.notes2[_n_count].G == 1)
+                {
+                    Instantiate(note_List[4], new Vector3(1, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data2.notes2[_n_count].A == 1)
+                {
+                    Instantiate(note_List[5], new Vector3(3, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data2.notes2[_n_count].B == 1)
+                {
+                    Instantiate(note_List[6], new Vector3(5, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data2.notes2[_n_count].C2 == 1)
+                {
+                    Instantiate(note_List[7], new Vector3(7, 5.5f, 0), Quaternion.identity);
+                }
+                break;
+            case Chapter1.song3:
+                if (json.data3.notes3[_n_count].C1 == 1)
+                {
+                    Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data3.notes3[_n_count].D == 1)
+                {
+                    Instantiate(note_List[1], new Vector3(-5, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data3.notes3[_n_count].E == 1)
+                {
+                    Instantiate(note_List[2], new Vector3(-3, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data3.notes3[_n_count].F == 1)
+                {
+                    Instantiate(note_List[3], new Vector3(-1, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data3.notes3[_n_count].G == 1)
+                {
+                    Instantiate(note_List[4], new Vector3(1, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data3.notes3[_n_count].A == 1)
+                {
+                    Instantiate(note_List[5], new Vector3(3, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data3.notes3[_n_count].B == 1)
+                {
+                    Instantiate(note_List[6], new Vector3(5, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data3.notes3[_n_count].C2 == 1)
+                {
+                    Instantiate(note_List[7], new Vector3(7, 5.5f, 0), Quaternion.identity);
+                }
+                break;
         }
 
-
+        yield return null;
 
     }
-    int m = 0;
-    private void Update()
+    int a = 0;
+    private void FixedUpdate()
     {
+       // chapter1 = Chapter1.song3;
         currcntTime += Time.deltaTime;
 
         if (currcntTime >= 60d / bpm)
         {
 
-            if (json.data1.notes1[m].C1 == 1)
-            {
-                Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
-            }
-            if (json.data1.notes1[m].D == 1)
-            {
-                Instantiate(note_List[1], new Vector3(-5, 5.5f, 0), Quaternion.identity);
-            }
-            if (json.data1.notes1[m].E == 1)
-            {
-                Instantiate(note_List[2], new Vector3(-3, 5.5f, 0), Quaternion.identity);
-            }
-            if (json.data1.notes1[m].F == 1)
-            {
-                Instantiate(note_List[3], new Vector3(-1, 5.5f, 0), Quaternion.identity);
-            }
-            if (json.data1.notes1[m].G == 1)
-            {
-                Instantiate(note_List[4], new Vector3(1, 5.5f, 0), Quaternion.identity);
-            }
-            if (json.data1.notes1[m].A == 1)
-            {
-                Instantiate(note_List[5], new Vector3(3, 5.5f, 0), Quaternion.identity);
-            }
-            if (json.data1.notes1[m].B == 1)
-            {
-                Instantiate(note_List[6], new Vector3(5, 5.5f, 0), Quaternion.identity);
-            }
-            if (json.data1.notes1[m].C2 == 1)
-            {
-                Instantiate(note_List[7], new Vector3(7, 5.5f, 0), Quaternion.identity);
-            }
+            StartCoroutine(test(n_count++));
 
+            t_currtime = Time.time;
+            Sum(prevtime, t_currtime);
 
-            m++;
-
+            if (n_count == json.data1.notes1.Length)
+            {
+                n_count = 0;
+                chapter1 = Chapter1.song2;
+            }
+            a++;
+            print(a);
             currcntTime -= 60d / bpm;
         }
-        print(m);
+    }
 
 
 
 
-
-
+    private void Update()
+    {
 
         //키입력 시 노트칸 collider 활성
         if (Input.GetKey(KeyCode.A))
@@ -251,7 +338,9 @@ public class GameManager : MonoBehaviour
         }
 
 
-    }
+    
+
+}
 
 
     public IEnumerator SongStart() //챕터 1 (song1, song2, song3) 루틴 시작
