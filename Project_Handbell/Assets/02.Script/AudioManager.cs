@@ -5,18 +5,23 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    AudioSource audioSource;
+    public GameObject[] Song_MR_Obj;
 
+    public AudioSource[] mr_audioSource;
     public AudioClip[] song_MRs;
     public AudioSource[] effect_sound_Line;
     public AudioClip[] effect_sound_Clips;
 
-    void Start()
-    {
-        //오디오매니저의 각 개체별로 각 클립을 넣어줌
-        audioSource = GetComponent<AudioSource>();
+    GameManager gameManager;
 
-        this.audioSource.clip = song_MRs[0];
+
+    private void Awake()
+    {
+         for (int i = 0; i < mr_audioSource.Length; i++)
+        {
+            mr_audioSource[i].clip = song_MRs[i];
+            Song_MR_Obj[i].SetActive(false);
+        }
 
         for (int i = 0; i < effect_sound_Line.Length; i++)
         {
@@ -24,12 +29,24 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void Song1_Start()
+    void Start()
     {
-      this.audioSource.Play();
+        //오디오매니저의 각 개체별로 각 클립을 넣어줌
+
+        //this.mr_audioSource.clip = song_MRs[0];
+        //mr_audioSource.Play();
+    
     }
 
-   public void Line_1_sfx()
+    private void OnEnable()
+    {
+
+    }
+
+  
+
+    #region 트랙라인별 효과음
+    public void Line_1_sfx()
     {
         effect_sound_Line[0].Play();
     }
@@ -61,4 +78,5 @@ public class AudioManager : MonoBehaviour
     {
         effect_sound_Line[7].Play();
     }
+    #endregion
 }

@@ -61,161 +61,87 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        // StartCoroutine(SongStart());
-        audioManager.Song1_Start();
-    }
-
-    float prevtime = 0f;
-    float t_currtime = 0f;
-
-    void Sum(float _prevtime, float _t_currtime)
-    {
-        print(_t_currtime - _prevtime);
-        _prevtime = _t_currtime;
-    }
-
-    public IEnumerator test(int _n_count)
-    {
-        switch (chapter1)
-        {
-            case Chapter1.song1:
-                if (json.data1.notes1[_n_count].C1 == 1)
-                {
-                    Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data1.notes1[_n_count].D == 1)
-                {
-                    Instantiate(note_List[1], new Vector3(-5, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data1.notes1[_n_count].E == 1)
-                {
-                    Instantiate(note_List[2], new Vector3(-3, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data1.notes1[_n_count].F == 1)
-                {
-                    Instantiate(note_List[3], new Vector3(-1, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data1.notes1[_n_count].G == 1)
-                {
-                    Instantiate(note_List[4], new Vector3(1, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data1.notes1[_n_count].A == 1)
-                {
-                    Instantiate(note_List[5], new Vector3(3, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data1.notes1[_n_count].B == 1)
-                {
-                    Instantiate(note_List[6], new Vector3(5, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data1.notes1[_n_count].C2 == 1)
-                {
-                    Instantiate(note_List[7], new Vector3(7, 5.5f, 0), Quaternion.identity);
-                }
-                break;
-            case Chapter1.song2:
-                if (json.data2.notes2[_n_count].C1 == 1)
-                {
-                    Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data2.notes2[_n_count].D == 1)
-                {
-                    Instantiate(note_List[1], new Vector3(-5, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data2.notes2[_n_count].E == 1)
-                {
-                    Instantiate(note_List[2], new Vector3(-3, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data2.notes2[_n_count].F == 1)
-                {
-                    Instantiate(note_List[3], new Vector3(-1, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data2.notes2[_n_count].G == 1)
-                {
-                    Instantiate(note_List[4], new Vector3(1, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data2.notes2[_n_count].A == 1)
-                {
-                    Instantiate(note_List[5], new Vector3(3, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data2.notes2[_n_count].B == 1)
-                {
-                    Instantiate(note_List[6], new Vector3(5, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data2.notes2[_n_count].C2 == 1)
-                {
-                    Instantiate(note_List[7], new Vector3(7, 5.5f, 0), Quaternion.identity);
-                }
-                break;
-            case Chapter1.song3:
-                if (json.data3.notes3[_n_count].C1 == 1)
-                {
-                    Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data3.notes3[_n_count].D == 1)
-                {
-                    Instantiate(note_List[1], new Vector3(-5, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data3.notes3[_n_count].E == 1)
-                {
-                    Instantiate(note_List[2], new Vector3(-3, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data3.notes3[_n_count].F == 1)
-                {
-                    Instantiate(note_List[3], new Vector3(-1, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data3.notes3[_n_count].G == 1)
-                {
-                    Instantiate(note_List[4], new Vector3(1, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data3.notes3[_n_count].A == 1)
-                {
-                    Instantiate(note_List[5], new Vector3(3, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data3.notes3[_n_count].B == 1)
-                {
-                    Instantiate(note_List[6], new Vector3(5, 5.5f, 0), Quaternion.identity);
-                }
-                if (json.data3.notes3[_n_count].C2 == 1)
-                {
-                    Instantiate(note_List[7], new Vector3(7, 5.5f, 0), Quaternion.identity);
-                }
-                break;
-        }
-
-        yield return null;
+        Chapter1_Start = true;
 
     }
+
+
+
     int a = 0;
+
+    bool Chapter1_Start = false;
+
+    float Wait_MR_Count = 18.45f; //18.45f
     private void FixedUpdate()
     {
-       // chapter1 = Chapter1.song3;
-        currcntTime += Time.deltaTime;
 
-        if (currcntTime >= 60d / bpm)
+  
+        if (Chapter1_Start) //챕터 시작시 곡 진행
         {
 
-            StartCoroutine(test(n_count++));
 
-            t_currtime = Time.time;
-            Sum(prevtime, t_currtime);
+            Wait_MR_Count -= Time.deltaTime;
 
-            if (n_count == json.data1.notes1.Length)
+            switch (chapter1)
             {
-                n_count = 0;
-                chapter1 = Chapter1.song2;
+                case Chapter1.song1:
+                    audioManager.Song_MR_Obj[0].SetActive(true);
+                    bpm = 120;
+                    if (n_count == json.data1.notes1.Length)
+                    {
+                        n_count = 0;
+                        Wait_MR_Count = 25.45f; //25.45f
+                        chapter1 = Chapter1.song2;
+                    }
+                    break;
+                case Chapter1.song2:
+                    audioManager.Song_MR_Obj[0].SetActive(false);
+                    audioManager.Song_MR_Obj[1].SetActive(true);
+                    bpm = 120;
+                    if (n_count == json.data2.notes2.Length)
+                    {
+                        n_count = 0;
+                        Wait_MR_Count = 12.09f; //12.09f
+                        chapter1 = Chapter1.song3;
+                    }
+                    break;
+                case Chapter1.song3:
+                    audioManager.Song_MR_Obj[1].SetActive(false);
+                    audioManager.Song_MR_Obj[2].SetActive(true);
+                    bpm = 240;
+                    if (n_count == json.data2.notes2.Length)
+                    {
+                        print("끝");
+                    }
+                    break;
             }
-            a++;
-            print(a);
-            currcntTime -= 60d / bpm;
+
+            if (Wait_MR_Count <= 0)
+            {
+                currcntTime += Time.deltaTime;
+                if (currcntTime >= 60d / bpm)
+                {
+
+                    StartCoroutine(test(n_count++));
+
+                    a++;
+                    print(a);
+                    currcntTime -= 60d / bpm;
+                }
+
+            }
+
         }
     }
+
+
 
 
 
 
     private void Update()
     {
-
+        #region 키입력
         //키입력 시 노트칸 collider 활성
         if (Input.GetKey(KeyCode.A))
         {
@@ -336,160 +262,126 @@ public class GameManager : MonoBehaviour
             verdit_List[7].gameObject.GetComponent<BoxCollider>().enabled = false;
             track_List[7].SetActive(false);
         }
+        #endregion
 
+    }
 
-    
-
-}
-
-
-    public IEnumerator SongStart() //챕터 1 (song1, song2, song3) 루틴 시작
+    IEnumerator Wait_MR()
     {
+        new WaitForSeconds(20f);
+        yield return null;
+    }
 
-        for (int c = 0; c < (int)Chapter1.legth; c++) //총 노래를 3번 진행하며 1곡 -> 2곡 -> 3곡으로 진행
+    public IEnumerator test(int _n_count) //챕터 1 (song1, song2, song3) 루틴 시작
+    {
+        switch (chapter1) //총 노래를 3번 진행하며 1곡 -> 2곡 -> 3곡으로 진행
         {
-            switch (chapter1)
-            {
-                case Chapter1.song1: //song1일 때 노트 패턴
-
-                    for (int i = 0; i < json.data1.notes1.Length; i++)
-                    {
-                        if (json.data1.notes1[i].C1 == 1)
-                        {
-                            Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data1.notes1[i].D == 1)
-                        {
-                            Instantiate(note_List[1], new Vector3(-5, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data1.notes1[i].E == 1)
-                        {
-                            Instantiate(note_List[2], new Vector3(-3, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data1.notes1[i].F == 1)
-                        {
-                            Instantiate(note_List[3], new Vector3(-1, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data1.notes1[i].G == 1)
-                        {
-                            Instantiate(note_List[4], new Vector3(1, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data1.notes1[i].A == 1)
-                        {
-                            Instantiate(note_List[5], new Vector3(3, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data1.notes1[i].B == 1)
-                        {
-                            Instantiate(note_List[6], new Vector3(5, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data1.notes1[i].C2 == 1)
-                        {
-                            Instantiate(note_List[7], new Vector3(7, 5.5f, 0), Quaternion.identity);
-                        }
-
-                        yield return new WaitForSeconds(0.5f);
-                    }
-
-                    yield return new WaitForSeconds(wait_time);
-                    chapter1 = Chapter1.song2;
-                    break;
-
-                case Chapter1.song2: //song2 일 때 노트 패턴
-                    for (int i = 0; i < json.data2.notes2.Length; i++)
-                    {
-                        if (json.data2.notes2[i].C1 == 1)
-                        {
-                            Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data2.notes2[i].D == 1)
-                        {
-                            Instantiate(note_List[1], new Vector3(-5, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data2.notes2[i].E == 1)
-                        {
-                            Instantiate(note_List[2], new Vector3(-3, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data2.notes2[i].F == 1)
-                        {
-                            Instantiate(note_List[3], new Vector3(-1, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data2.notes2[i].G == 1)
-                        {
-                            Instantiate(note_List[4], new Vector3(1, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data2.notes2[i].A == 1)
-                        {
-                            Instantiate(note_List[5], new Vector3(3, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data2.notes2[i].B == 1)
-                        {
-                            Instantiate(note_List[6], new Vector3(5, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data2.notes2[i].C2 == 1)
-                        {
-                            Instantiate(note_List[7], new Vector3(7, 5.5f, 0), Quaternion.identity);
-                        }
-
-                        yield return new WaitForSeconds(spawn_Speed);
-
-                    }
-
-                    yield return new WaitForSeconds(wait_time);
-                    chapter1 = Chapter1.song3;
-                    break;
-
-                case Chapter1.song3: //song3 일 때 노트 패턴
-                    for (int i = 0; i < json.data3.notes3.Length; i++)
-                    {
-                        if (json.data3.notes3[i].C1 == 1)
-                        {
-                            Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data3.notes3[i].D == 1)
-                        {
-                            Instantiate(note_List[1], new Vector3(-5, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data3.notes3[i].E == 1)
-                        {
-                            Instantiate(note_List[2], new Vector3(-3, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data3.notes3[i].F == 1)
-                        {
-                            Instantiate(note_List[3], new Vector3(-1, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data3.notes3[i].G == 1)
-                        {
-                            Instantiate(note_List[4], new Vector3(1, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data3.notes3[i].A == 1)
-                        {
-                            Instantiate(note_List[5], new Vector3(3, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data3.notes3[i].B == 1)
-                        {
-                            Instantiate(note_List[6], new Vector3(5, 5.5f, 0), Quaternion.identity);
-                        }
-                        if (json.data3.notes3[i].C2 == 1)
-                        {
-                            Instantiate(note_List[7], new Vector3(7, 5.5f, 0), Quaternion.identity);
-                        }
-
-                        yield return new WaitForSeconds(0.175f);
-
-                    }
-
-                    yield return new WaitForSeconds(wait_time);
-
-                    uiManager.Color_note_Spawn(); //결과창 생성
-                    break;
-                default:
-
-                    break;
-
-            }
+            case Chapter1.song1: //song1일 때 노트 패턴
+                if (json.data1.notes1[_n_count].C1 == 1)
+                {
+                    Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data1.notes1[_n_count].D == 1)
+                {
+                    Instantiate(note_List[1], new Vector3(-5, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data1.notes1[_n_count].E == 1)
+                {
+                    Instantiate(note_List[2], new Vector3(-3, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data1.notes1[_n_count].F == 1)
+                {
+                    Instantiate(note_List[3], new Vector3(-1, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data1.notes1[_n_count].G == 1)
+                {
+                    Instantiate(note_List[4], new Vector3(1, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data1.notes1[_n_count].A == 1)
+                {
+                    Instantiate(note_List[5], new Vector3(3, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data1.notes1[_n_count].B == 1)
+                {
+                    Instantiate(note_List[6], new Vector3(5, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data1.notes1[_n_count].C2 == 1)
+                {
+                    Instantiate(note_List[7], new Vector3(7, 5.5f, 0), Quaternion.identity);
+                }
+                break;
+            case Chapter1.song2: //song2 일 때 노트 패턴
+                if (json.data2.notes2[_n_count].C1 == 1)
+                {
+                    Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data2.notes2[_n_count].D == 1)
+                {
+                    Instantiate(note_List[1], new Vector3(-5, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data2.notes2[_n_count].E == 1)
+                {
+                    Instantiate(note_List[2], new Vector3(-3, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data2.notes2[_n_count].F == 1)
+                {
+                    Instantiate(note_List[3], new Vector3(-1, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data2.notes2[_n_count].G == 1)
+                {
+                    Instantiate(note_List[4], new Vector3(1, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data2.notes2[_n_count].A == 1)
+                {
+                    Instantiate(note_List[5], new Vector3(3, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data2.notes2[_n_count].B == 1)
+                {
+                    Instantiate(note_List[6], new Vector3(5, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data2.notes2[_n_count].C2 == 1)
+                {
+                    Instantiate(note_List[7], new Vector3(7, 5.5f, 0), Quaternion.identity);
+                }
+                break;
+            case Chapter1.song3: //song3 일 때 노트 패턴
+                if (json.data3.notes3[_n_count].C1 == 1)
+                {
+                    Instantiate(note_List[0], new Vector3(-7, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data3.notes3[_n_count].D == 1)
+                {
+                    Instantiate(note_List[1], new Vector3(-5, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data3.notes3[_n_count].E == 1)
+                {
+                    Instantiate(note_List[2], new Vector3(-3, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data3.notes3[_n_count].F == 1)
+                {
+                    Instantiate(note_List[3], new Vector3(-1, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data3.notes3[_n_count].G == 1)
+                {
+                    Instantiate(note_List[4], new Vector3(1, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data3.notes3[_n_count].A == 1)
+                {
+                    Instantiate(note_List[5], new Vector3(3, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data3.notes3[_n_count].B == 1)
+                {
+                    Instantiate(note_List[6], new Vector3(5, 5.5f, 0), Quaternion.identity);
+                }
+                if (json.data3.notes3[_n_count].C2 == 1)
+                {
+                    Instantiate(note_List[7], new Vector3(7, 5.5f, 0), Quaternion.identity);
+                }
+                break;
         }
 
-        yield break;
+        yield return null;
+
     }
 
 
