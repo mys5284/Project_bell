@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public int bpm = 60;
     double currcntTime = 0d;
+    double currcntTime2 = 0d;
     int n_count = 0;
 
     JsonData json;
@@ -68,16 +69,23 @@ public class GameManager : MonoBehaviour
 
 
     int a = 0;
-
+    int b = 0;
     bool Chapter1_Start = false;
 
-    float Wait_MR_Count = 18.45f; //18.45f
+    float Wait_MR_Count = 0.2f; //18.45f(작은별) //0.2f
     private void FixedUpdate()
     {
 
-  
+
         if (Chapter1_Start) //챕터 시작시 곡 진행
         {
+            currcntTime2 += Time.deltaTime;
+            if (currcntTime2 >= 60d / bpm)
+            {
+                b++;
+                print(b);
+                currcntTime2 -= 60d / bpm;
+            }
 
 
             Wait_MR_Count -= Time.deltaTime;
@@ -90,7 +98,7 @@ public class GameManager : MonoBehaviour
                     if (n_count == json.data1.notes1.Length)
                     {
                         n_count = 0;
-                        Wait_MR_Count = 25.45f; //25.45f
+                        Wait_MR_Count = 0f; //25.45f
                         chapter1 = Chapter1.song2;
                     }
                     break;
@@ -101,7 +109,7 @@ public class GameManager : MonoBehaviour
                     if (n_count == json.data2.notes2.Length)
                     {
                         n_count = 0;
-                        Wait_MR_Count = 12.09f; //12.09f
+                        Wait_MR_Count = 0.17f;; //12.09f
                         chapter1 = Chapter1.song3;
                     }
                     break;
@@ -116,7 +124,7 @@ public class GameManager : MonoBehaviour
                     break;
             }
 
-            if (Wait_MR_Count <= 0)
+            if (Wait_MR_Count <= 0) //전주 싱크시간 맞추기
             {
                 currcntTime += Time.deltaTime;
                 if (currcntTime >= 60d / bpm)

@@ -10,7 +10,7 @@ public class Note : MonoBehaviour
     void Update() 
     {
         //노트의 이동 및 회전
-        Vector3 move = new Vector3(0, -10, 0);
+        Vector3 move = new Vector3(0, -5, 0);
         this.transform.position += move * Time.deltaTime;
         transform.Rotate(0f, 180f * Time.deltaTime, 0f);
     }
