@@ -57,13 +57,13 @@ public class GameManager : MonoBehaviour
         uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        chapter1 = Chapter1.song1;
+
 
     }
     void Start()
     {
         Chapter1_Start = true;
-
+        chapter1 = Chapter1.song1;
     }
 
 
@@ -95,6 +95,8 @@ public class GameManager : MonoBehaviour
                 case Chapter1.song1:
                     audioManager.Song_MR_Obj[0].SetActive(true);
                     bpm = 120;
+                    UIImg_StartCount(31, 33, 35, 37, 39);
+                   
                     if (n_count == json.data1.notes1.Length)
                     {
                         n_count = 0;
@@ -106,10 +108,12 @@ public class GameManager : MonoBehaviour
                     audioManager.Song_MR_Obj[0].SetActive(false);
                     audioManager.Song_MR_Obj[1].SetActive(true);
                     bpm = 120;
+                    UIImg_StartCount(45, 47, 49, 51, 53);
+                   
                     if (n_count == json.data2.notes2.Length)
                     {
                         n_count = 0;
-                        Wait_MR_Count = 0.17f;; //12.09f
+                        Wait_MR_Count = 0.17f; //12.09f
                         chapter1 = Chapter1.song3;
                     }
                     break;
@@ -117,23 +121,26 @@ public class GameManager : MonoBehaviour
                     audioManager.Song_MR_Obj[1].SetActive(false);
                     audioManager.Song_MR_Obj[2].SetActive(true);
                     bpm = 240;
+                    UIImg_StartCount(36, 40, 44, 48, 52);
+                    
                     if (n_count == json.data2.notes2.Length)
                     {
                         print("끝");
                     }
                     break;
+             
             }
 
             if (Wait_MR_Count <= 0) //전주 싱크시간 맞추기
             {
                 currcntTime += Time.deltaTime;
-                if (currcntTime >= 60d / bpm)
+                if (currcntTime >= 60d / bpm) //비트시작
                 {
 
                     StartCoroutine(test(n_count++));
-
                     a++;
                     print(a);
+
                     currcntTime -= 60d / bpm;
                 }
 
@@ -274,11 +281,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    IEnumerator Wait_MR()
-    {
-        new WaitForSeconds(20f);
-        yield return null;
-    }
+
 
     public IEnumerator test(int _n_count) //챕터 1 (song1, song2, song3) 루틴 시작
     {
@@ -392,6 +395,31 @@ public class GameManager : MonoBehaviour
 
     }
 
-
+   public void UIImg_StartCount(int _three, int _two, int _one, int _start, int _false)
+    {
+        if (n_count == _three)
+        {
+            uiManager.img_3.gameObject.SetActive(true);
+        }
+        else if (n_count == _two)
+        {
+            uiManager.img_3.gameObject.SetActive(false);
+            uiManager.img_2.gameObject.SetActive(true);
+        }
+        else if (n_count == _one)
+        {
+            uiManager.img_2.gameObject.SetActive(false);
+            uiManager.img_1.gameObject.SetActive(true);
+        }
+        else if (n_count == _start)
+        {
+            uiManager.img_1.gameObject.SetActive(false);
+            uiManager.img_START.gameObject.SetActive(true);
+        }
+        else if (n_count == _false)
+        {
+            uiManager.img_START.gameObject.SetActive(false);
+        }
+    }
 
 }

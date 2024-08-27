@@ -352,7 +352,6 @@
 "Assets/02.Script/JsonData.cs"
 "Assets/02.Script/Note.cs"
 "Assets/02.Script/Note_Destroy.cs"
-"Assets/02.Script/Null_Note.cs"
 "Assets/02.Script/ScoreManager.cs"
 "Assets/02.Script/UIManager.cs"
 -langversion:9.0

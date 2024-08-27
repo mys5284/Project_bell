@@ -18,6 +18,12 @@ public class UIManager : MonoBehaviour
     GameManager gameManager;
     ScoreManager scoreManager;
 
+    public Image img_START;
+    public Image img_1;
+    public Image img_2;
+    public Image img_3;
+
+
     //음표버튼 오브젝트
     public GameObject Color_note_button1;
     public GameObject Color_note_button2;
